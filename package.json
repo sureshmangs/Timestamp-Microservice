@@ -1,0 +1,22 @@
+{
+  "name": "timestamp-microservice",
+  "version": "1.0.0",
+  "description": "Timestamp microservice",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sureshmangs/Timestamp-Microservice.git"
+  },
+  "author": "Suresh Mangs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sureshmangs/Timestamp-Microservice/issues"
+  },
+  "homepage": "https://github.com/sureshmangs/Timestamp-Microservice#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

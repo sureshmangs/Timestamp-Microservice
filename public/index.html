@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Timestamp Microservice</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+
+<body class="text-center container" style="background-color:#fafafa; font-family: 'Roboto', sans-serif;">
+    <h1 class="mt-3 mb-3 ">Timestamp Microservice</h1>
+    <hr>
+
+    <code>
+        <p>User can pass a URL parameter and it will check wether the entered URL parameter contains a UNIX timestamp or a
+        regular date (ie February 05, 2020 or Feb 05, 2020, with or without commas).</p>
+    <p>If it does, it returns both the Unix timestamp and the utc form of the date.</p>
+    <p>If it does not contain a date or Unix timestamp, it returns null for those properties.
+    </p>
+    </code>
+
+    <h4 class="mt-4">Example Usage:</h4>
+    <a href="/api/timestamp/:2020-02-05" target="_blank">Timestamp-Microservice/api/timestamp/2020-02-05</a>
+    </br>
+    <a href="/api/timestamp/:1580860800000" target="_blank">Timestamp-Microservice/api/timestamp/1580860800000</a>
+
+    <h4 class="mt-4">Example Output :</h4>
+    <code>{"unix":1580860800000,"utc":"Wed, 05 Feb 2020 00:00:00 GMT"}</code>
+    <p></p>
+
+
+    <a class="mt-3" id='today' href="/api/timestamp" onclick="todayDate()">Today</a>
+
+    <p class="mt-5">Made with <i class="fa fa-heart" style="color:#FF5252"></i> by <a
+            href="https://github.com/sureshmangs">Suresh Mangs</a></p>
+    <script>
+
+        function todayDate() {
+            let d = new Date();
+            document.getElementById('today').href = '/api/timestamp/' + d;
+        }
+
+    </script>
+
+</body>
+
+</html>
