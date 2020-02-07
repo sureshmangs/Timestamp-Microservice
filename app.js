@@ -32,5 +32,7 @@ app.get('/api/timestamp/:date_string?', (req, res) => {
     res.json(myData);
 })
 
-let port = process.env.port || 3000;
-app.listen(port)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`App running on PORT ${ PORT }`);
+});
