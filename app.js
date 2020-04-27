@@ -5,31 +5,49 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html')
 })
 
-app.get('/api/timestamp/:date_string?', (req, res) => {
+// 1: check if string is empty  -> true  -> return new unix and utc
+// 2: check if string is a number -> true  -> valid date or not   -> valid return new unix and utc   -> invalid return error
+// 3: string is NaN   ->  > valid date or not   -> valid return new unix and utc   -> invalid return error
 
-    let date_string = req.params.date_string.slice(1);
-
-
-    let unix, utc;
-
-    if (isNaN(date_string)) {
-        let d = new Date(date_string);
-        unix = d.getTime();    // milliseconds
-        utc = d.toUTCString()   // utc
+app.get('/api/timestamp/:date_string?', (req, res)=> {
+  const date_string = req.params.date_string;
+  
+  //check if string is empty
+  if(!date_string) {
+    const date = new Date();
+    res.json({
+      "unix": date.getTime(),
+      "utc" : date.toUTCString()
+    })
+  }
+  
+  // check if string is a number
+  if(!isNaN(date_string)) {
+    const tmp = Number(date_string);
+    const date = new Date(tmp);
+    // valid date
+    if(date.getTime()){
+      res.json({
+      "unix": date.getTime(),
+      "utc" : date.toUTCString()
+    })
     } else {
-        let k = Number(date_string);
-        let d = new Date(k);
-        unix = k;                // milliseconds
-        utc = d.toUTCString()    // utc
+      res.json({"error" : "Invalid Date" });
     }
-
-
-    // JSON object
-    let myData = {
-        "unix": unix,
-        "utc": utc
+  }
+  // string is not a number
+   else {
+     const date = new Date(date_string);
+    // valid date
+    if(date.getTime()){
+      res.json({
+      "unix": date.getTime(),
+      "utc" : date.toUTCString()
+    })
+    } else {
+      res.json({"error" : "Invalid Date" });
     }
-    res.json(myData);
+   }
 })
 
 const PORT = process.env.PORT || 3000;
